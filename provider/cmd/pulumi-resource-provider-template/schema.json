@@ -1,16 +1,11 @@
 {
   "name": "provider-boilerplate",
-  "displayName": "pulumi-provider-boilerplate",
-  "description": "An example built with pulumi-go-provider.",
-  "homepage": "https://www.pulumi.com",
-  "namespace": "pulumi",
+  "displayName": "pulumi-provider-template",
+  "name": "provider-template",
+  "version": "1.0.0",
   "language": {
-    "csharp": {
-      "respectSchemaVersion": true
-    },
     "go": {
-      "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate",
+      "importBasePath": "github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template",
       "respectSchemaVersion": true
     },
     "nodejs": {

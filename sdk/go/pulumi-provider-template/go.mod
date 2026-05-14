@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate
+module github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template
 
 go 1.24.7
 
