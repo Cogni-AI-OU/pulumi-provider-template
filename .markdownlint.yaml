@@ -33,7 +33,7 @@ MD033:
 # MD034 no-bare-urls
 MD034: false
 # MD041 first-line-heading
-MD041: false
+MD041: true
 # MD046 code-block-style - Code block style
 MD046:
   style: consistent
