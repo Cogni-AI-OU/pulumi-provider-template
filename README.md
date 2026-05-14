@@ -1,6 +1,6 @@
 # Pulumi Native Provider Boilerplate
 
-This repository is a boilerplate showing how to create and locally test a native Pulumi provider (with examples of both CustomResource and ComponentResource [resource types](https://www.pulumi.com/docs/iac/concepts/resources/)). 
+This repository is a boilerplate showing how to create and locally test a native Pulumi provider (with examples of both CustomResource and ComponentResource [resource types](https://www.pulumi.com/docs/iac/concepts/resources/)).
 
 ## Authoring a Pulumi Native Provider
 
@@ -34,7 +34,7 @@ Pulumi offers this repository as a [GitHub template repository](https://docs.git
 
 1. Click "Use this template".
 1. Set the following options:
-   * Owner: pulumi 
+   * Owner: pulumi
    * Repository name: pulumi-provider-boilerplate (replace "provider-boilerplate" with the name of your provider)
    * Description: Pulumi provider for xyz
    * Repository type: Public
@@ -60,7 +60,7 @@ From the templated repository:
    ```bash
    $ make build install
    ```
-   
+
 This will:
 
 1. Create the SDK codegen binary and place it in a `./bin` folder (gitignored)
@@ -69,7 +69,7 @@ This will:
 4. Install the provider on your machine.
 
 #### Test against the example
-   
+
 ```bash
 $ cd examples/simple
 $ yarn link @pulumi/provider-boilerplate
