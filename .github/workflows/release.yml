@@ -68,10 +68,12 @@ jobs:
         run: make generate_schema
       - if: github.event_name == 'pull_request'
         name: Check Schema is Valid
-        run: >-
+        run: |
           {
             echo 'SCHEMA_CHANGES<<EOF';
-            schema-tools compare -p ${{ env.PROVIDER }} -o ${{ github.event.repository.default_branch }} -n --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json;
+            schema-tools compare -p ${{ env.PROVIDER }} \
+              -o ${{ github.event.repository.default_branch }} -n \
+              --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json;
             echo 'EOF';
           } >> "$GITHUB_ENV"
         env:
@@ -107,7 +109,10 @@ jobs:
             sdk/java/build.gradle
       - run: git status --porcelain
       - name: Tar provider binaries
-        run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin/ pulumi-resource-${{ env.PROVIDER }}
+        run: >-
+          tar -zcf ${{ github.workspace }}/bin/provider.tar.gz
+          -C ${{ github.workspace }}/bin/
+          pulumi-resource-${{ env.PROVIDER }}
           pulumi-gen-${{ env.PROVIDER}}
       - name: Upload artifacts
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f  # v7.0.0
@@ -368,7 +373,13 @@ jobs:
           AZURE_SIGNING_ACCOUNT_ENDPOINT: ${{ steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_ENDPOINT }}
           AZURE_SIGNING_ACCOUNT_NAME: ${{ steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_NAME }}
           AZURE_SIGNING_CERT_PROFILE_NAME: ${{ steps.esc-secrets.outputs.AZURE_SIGNING_CERT_PROFILE_NAME }}
-          SKIP_SIGNING: ${{ steps.esc-secrets.outputs.AZURE_SIGNING_CLIENT_ID == '' && steps.esc-secrets.outputs.AZURE_SIGNING_CLIENT_SECRET == '' && steps.esc-secrets.outputs.AZURE_SIGNING_TENANT_ID == '' && steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_ENDPOINT == '' && steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_NAME == '' && steps.esc-secrets.outputs.AZURE_SIGNING_CERT_PROFILE_NAME == '' }}
+          SKIP_SIGNING: >-
+            ${{ steps.esc-secrets.outputs.AZURE_SIGNING_CLIENT_ID == '' &&
+            steps.esc-secrets.outputs.AZURE_SIGNING_CLIENT_SECRET == '' &&
+            steps.esc-secrets.outputs.AZURE_SIGNING_TENANT_ID == '' &&
+            steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_ENDPOINT == '' &&
+            steps.esc-secrets.outputs.AZURE_SIGNING_ACCOUNT_NAME == '' &&
+            steps.esc-secrets.outputs.AZURE_SIGNING_CERT_PROFILE_NAME == '' }}
           GITHUB_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         with:
           args: -p 3 release --clean --timeout 60m0s

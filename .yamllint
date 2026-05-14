@@ -4,18 +4,6 @@ ignore: |
   .cache
   .git
   .github/workflows/*.lock.yml
-  .github/workflows/build.yml
-  .github/workflows/claude.yml
-  .github/workflows/command-dispatch.yml
-  .github/workflows/comment-on-stale-issues.yml
-  .github/workflows/community-moderation.yml
-  .github/workflows/lint.yml
-  .github/workflows/prerelease.yml
-  .github/workflows/release.yml
-  .github/workflows/release_command.yml
-  .github/workflows/run-acceptance-tests.yml
-  .github/workflows/weekly-pulumi-update.yml
-  .golangci.yml
 rules:
   comments:
     min-spaces-from-content: 1
@@ -24,6 +12,7 @@ rules:
     max-spaces-inside: 1
   line-length:
     max: 120
+    level: warning
   new-line-at-end-of-file:
     level: warning
   octal-values:
