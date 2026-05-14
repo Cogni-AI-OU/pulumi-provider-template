@@ -1,4 +1,4 @@
-# Pulumi Native Provider Boilerplate
+# Pulumi Provider SDK for Python
 
 This repository is a boilerplate showing how to create and locally test a native Pulumi provider (with examples of both CustomResource and ComponentResource [resource types](https://www.pulumi.com/docs/iac/concepts/resources/)).
 

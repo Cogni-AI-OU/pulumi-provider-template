@@ -54,6 +54,8 @@ safe-outputs:
 ---
 
 
+# Pull Request Review
+
 Review pull request #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }} in repository `${{ github.repository }}`.
 
 Workflow-specific rules:

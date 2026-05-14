@@ -2,6 +2,8 @@
 description: High-signal PR review for gh-aw workflows using safe outputs
 ---
 
+# Code Review
+
 Provide a code review for the given pull request.
 
 **Agent assumptions (applies to all agents and subagents):**
