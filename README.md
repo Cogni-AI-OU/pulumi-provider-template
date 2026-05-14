@@ -103,5 +103,6 @@ You can now repeat the steps for [build, install, and test](#test-against-the-ex
 ## References
 
 Other resources/examples for implementing providers:
+
 - [Pulumi Command provider](https://github.com/pulumi/pulumi-command/blob/master/provider/pkg/provider/provider.go)
 - [Pulumi Go Provider repository](https://github.com/pulumi/pulumi-go-provider)

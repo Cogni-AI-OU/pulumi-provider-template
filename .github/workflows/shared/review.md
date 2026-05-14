@@ -59,6 +59,7 @@ safe-outputs:
 Review pull request #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }} in repository `${{ github.repository }}`.
 
 Workflow-specific rules:
+
 - Use `${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}` as the authoritative PR target.
 - Treat the imported review prompt as the source of the review procedure.
 - Use only gh-aw safe outputs for side effects:
