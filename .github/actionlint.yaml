@@ -1,0 +1,4 @@
+---
+self-hosted-runner:
+  labels:
+    - pulumi-ubuntu-8core

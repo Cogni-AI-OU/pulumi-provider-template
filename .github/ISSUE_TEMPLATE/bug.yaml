@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! 
+        Thanks for taking the time to fill out this bug report!
         You can also ask questions on our [Community Slack](https://slack.pulumi.com/).
   - type: textarea
     id: what-happened
@@ -24,8 +24,8 @@ body:
       label: Sample program
       description: |
         <details><summary>Provide a reproducible sample program</summary>
-        If this is a bug you encountered while running a Pulumi command, please provide us with a minimal, 
-        self-contained Pulumi program that reproduces this behavior so that we can investigate on our end. 
+        If this is a bug you encountered while running a Pulumi command, please provide us with a minimal,
+        self-contained Pulumi program that reproduces this behavior so that we can investigate on our end.
         Without a functional reproduction, we will not be able to prioritize this bug.
         **Note:** If the program output is more than a few lines, please send us a Gist or a link to a file.
         </details>
@@ -68,5 +68,5 @@ body:
     attributes:
       label: Contributing
       value: |-
-        Vote on this issue by adding a 👍 reaction. 
+        Vote on this issue by adding a 👍 reaction.
         To contribute a fix for this issue, leave a comment (and link to your pull request, if you've opened one already).
