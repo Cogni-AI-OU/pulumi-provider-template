@@ -106,7 +106,6 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
 9. Filter out any issue that fails validation.
 
 10. Deduplicate and prune the validated issue list. Remove:
-
    - Issues already covered by an existing review comment
    - Issues in threads where a human has already acknowledged the feedback
    - Issues that were present in an earlier revision but are fixed in the latest code
@@ -124,7 +123,6 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    Never resolve human-authored review threads. When uncertain, leave the thread unresolved.
 
 11. Classify the remaining issues:
-
    - `Blocking`: correctness, security, regression, data loss, or clear required-rule violations
    - `Non-blocking`: actionable but not merge-blocking concerns that are still worth interrupting the author for now
 
@@ -160,7 +158,6 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    Prefer zero comments over low-signal comments. Non-blocking comments should be rare.
 
 15. Post one inline comment per chosen issue using `create-pull-request-review-comment`. For each comment:
-
    - Provide a brief description of the issue
    - Explain why it matters
    - Reference the exact changed line

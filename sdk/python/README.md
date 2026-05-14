@@ -7,7 +7,6 @@ This repository is a boilerplate showing how to create and locally test a native
 This boilerplate creates a working Pulumi-owned provider named `provider-boilerplate`.
 It implements a random number generator that you can [build and test out for yourself](#test-against-the-example) and then replace the Random code with code specific to your provider.
 
-
 ### Prerequisites
 
 You will need to ensure the following tools are installed and present in your `$PATH`:
@@ -19,7 +18,6 @@ You will need to ensure the following tools are installed and present in your `$
 * [TypeScript](https://www.typescriptlang.org/)
 * [Python](https://www.python.org/downloads/) (called as `python3`).  For recent versions of MacOS, the system-installed version is fine.
 * [.NET](https://dotnet.microsoft.com/download)
-
 
 ### Build & test the boilerplate provider
 
@@ -58,7 +56,7 @@ From the templated repository:
 #### Build the provider and install the plugin
 
    ```bash
-   $ make build install
+   make build install
    ```
 
 This will:
@@ -71,11 +69,11 @@ This will:
 #### Test against the example
 
 ```bash
-$ cd examples/simple
-$ yarn link @pulumi/provider-boilerplate
-$ yarn install
-$ pulumi stack init test
-$ pulumi up
+cd examples/simple
+yarn link @pulumi/provider-boilerplate
+yarn install
+pulumi stack init test
+pulumi up
 ```
 
 Now that you have completed all of the above steps, you have a working provider that generates a random string for you.

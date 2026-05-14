@@ -7,19 +7,17 @@ This repository is a boilerplate showing how to create and locally test a native
 This boilerplate creates a working Pulumi-owned provider named `provider-boilerplate`.
 It implements a random number generator that you can [build and test out for yourself](#test-against-the-example) and then replace the Random code with code specific to your provider.
 
-
 ### Prerequisites
 
 You will need to ensure the following tools are installed and present in your `$PATH`:
 
-* [`pulumictl`](https://github.com/pulumi/pulumictl#installation)
-* [Go 1.21](https://golang.org/dl/) or 1.latest
-* [NodeJS](https://nodejs.org/en/) 14.x.  We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage NodeJS installations.
-* [Yarn](https://yarnpkg.com/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Python](https://www.python.org/downloads/) (called as `python3`).  For recent versions of MacOS, the system-installed version is fine.
-* [.NET](https://dotnet.microsoft.com/download)
-
+- [`pulumictl`](https://github.com/pulumi/pulumictl#installation)
+- [Go 1.21](https://golang.org/dl/) or 1.latest
+- [NodeJS](https://nodejs.org/en/) 14.x.  We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage NodeJS installations.
+- [Yarn](https://yarnpkg.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Python](https://www.python.org/downloads/) (called as `python3`).  For recent versions of MacOS, the system-installed version is fine.
+- [.NET](https://dotnet.microsoft.com/download)
 
 ### Build & test the boilerplate provider
 
@@ -34,10 +32,10 @@ Pulumi offers this repository as a [GitHub template repository](https://docs.git
 
 1. Click "Use this template".
 1. Set the following options:
-   * Owner: pulumi
-   * Repository name: pulumi-provider-boilerplate (replace "provider-boilerplate" with the name of your provider)
-   * Description: Pulumi provider for xyz
-   * Repository type: Public
+   - Owner: pulumi
+   - Repository name: pulumi-provider-boilerplate (replace "provider-boilerplate" with the name of your provider)
+   - Description: Pulumi provider for xyz
+   - Repository type: Public
 1. Clone the generated repository.
 
 From the templated repository:
@@ -58,7 +56,7 @@ From the templated repository:
 #### Build the provider and install the plugin
 
    ```bash
-   $ make build install
+   make build install
    ```
 
 This will:
@@ -71,11 +69,11 @@ This will:
 #### Test against the example
 
 ```bash
-$ cd examples/simple
-$ yarn link @pulumi/provider-boilerplate
-$ yarn install
-$ pulumi stack init test
-$ pulumi up
+cd examples/simple
+yarn link @pulumi/provider-boilerplate
+yarn install
+pulumi stack init test
+pulumi up
 ```
 
 Now that you have completed all of the above steps, you have a working provider that generates a random string for you.
@@ -106,5 +104,5 @@ You can now repeat the steps for [build, install, and test](#test-against-the-ex
 
 Other resources/examples for implementing providers:
 
-* [Pulumi Command provider](https://github.com/pulumi/pulumi-command/blob/master/provider/pkg/provider/provider.go)
-* [Pulumi Go Provider repository](https://github.com/pulumi/pulumi-go-provider)
+- [Pulumi Command provider](https://github.com/pulumi/pulumi-command/blob/master/provider/pkg/provider/provider.go)
+- [Pulumi Go Provider repository](https://github.com/pulumi/pulumi-go-provider)
