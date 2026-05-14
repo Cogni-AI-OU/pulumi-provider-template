@@ -48,23 +48,29 @@ safe-outputs:
     max: 1
   messages:
     footer: "> Reviewed by {workflow_name}"
-    run-started: "Started automated PR review for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}."
-    run-success: "Finished automated PR review for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}."
-    run-failure: "Automated PR review failed for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }} ({status})."
+    run-started: "Started automated PR review for #${{ github.event.pull_request.number ||
+      github.event.inputs.pr_number || github.event.issue.number }}."
+    run-success: "Finished automated PR review for #${{ github.event.pull_request.number ||
+      github.event.inputs.pr_number || github.event.issue.number }}."
+    run-failure: "Automated PR review failed for #${{ github.event.pull_request.number ||
+      github.event.inputs.pr_number || github.event.issue.number }} ({status})."
 ---
 
 
 # Pull Request Review
 
-Review pull request #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }} in repository `${{ github.repository }}`.
+Review pull request #${{ github.event.pull_request.number || github.event.inputs.pr_number ||
+github.event.issue.number }} in repository `${{ github.repository }}`.
 
 Workflow-specific rules:
 
-- Use `${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}` as the authoritative PR target.
+- Use `${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}` as the
+  authoritative PR target.
 - Treat the imported review prompt as the source of the review procedure.
 - Use only gh-aw safe outputs for side effects:
   - `create-pull-request-review-comment` for actionable inline findings on changed lines
-  - `resolve-pull-request-review-thread` for previously reported bot-authored threads that are now fixed or clearly acknowledged
+  - `resolve-pull-request-review-thread` for previously reported bot-authored threads that are now fixed or clearly
+    acknowledged
   - `submit-pull-request-review` for the final review
   - `noop` when the PR is not reviewable or required context is missing
 - Submit exactly one final review:
