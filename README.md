@@ -58,7 +58,7 @@ From the templated repository:
 #### Build the provider and install the plugin
 
    ```bash
-   $ make build install
+   make build install
    ```
 
 This will:
@@ -71,11 +71,11 @@ This will:
 #### Test against the example
 
 ```bash
-$ cd examples/simple
-$ yarn link @pulumi/provider-boilerplate
-$ yarn install
-$ pulumi stack init test
-$ pulumi up
+cd examples/simple
+yarn link @pulumi/provider-boilerplate
+yarn install
+pulumi stack init test
+pulumi up
 ```
 
 Now that you have completed all of the above steps, you have a working provider that generates a random string for you.
