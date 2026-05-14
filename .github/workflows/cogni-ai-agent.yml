@@ -77,7 +77,6 @@ jobs:
     permissions:
       actions: read
       contents: write
-      id-token: write
       issues: write
       pull-requests: write
     steps:
@@ -149,7 +148,6 @@ jobs:
     permissions:
       actions: read
       contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v6
         with:

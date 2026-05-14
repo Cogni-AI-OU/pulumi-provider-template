@@ -5,7 +5,7 @@ import (
 	goprovider "github.com/pulumi/pulumi-go-provider"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
-	"github.com/pulumi/pulumi-provider-boilerplate/provider"
+	"github.com/Cogni-AI-OU/pulumi-provider-template/provider"
 )
 
 var providerFactory = func(_ providers.PulumiTest) (pulumirpc.ResourceProviderServer, error) { //nolint:unused

@@ -4,7 +4,7 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate/internal"
+	"github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )

@@ -1,7 +1,7 @@
 package main
 
 import (
-	boilerplate "github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate"
+	template "github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

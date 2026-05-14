@@ -1,10 +1,10 @@
 PROJECT_NAME := Pulumi Provider Boilerplate
 
-PACK             := provider-boilerplate
+PACK             := provider-template
 PACKDIR          := sdk
-PROJECT          := github.com/pulumi/pulumi-provider-boilerplate
-NODE_MODULE_NAME := @pulumi/boilerplate
-NUGET_PKG_NAME   := Pulumi.Boilerplate
+PROJECT          := github.com/Cogni-AI-OU/pulumi-provider-template
+NODE_MODULE_NAME := @pulumi/template
+NUGET_PKG_NAME   := Pulumi.Template
 
 PROVIDER        := pulumi-resource-${PACK}
 PROVIDER_PATH   := provider
@@ -12,7 +12,7 @@ VERSION_PATH    := ${PROVIDER_PATH}/version.Version
 
 PULUMI          := pulumi
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-provider-boilerplate/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-provider-template/schema.json
 export GOPATH   := $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)

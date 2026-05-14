@@ -1,12 +1,11 @@
 ---
 template: native
-provider: provider-boilerplate
+provider: provider-template
 major-version: 0
 providerDefaultBranch: main
 publishRegistry: false
-providerVersion: github.com/pulumi/pulumi-provider-boilerplate/provider.Version
+providerVersion: github.com/Cogni-AI-OU/pulumi-provider-template/provider.Version
 parallel: 3
-sdkModuleDir: sdk/go/pulumi-provider-boilerplate
+sdkModuleDir: sdk/go/pulumi-provider-template
 esc:
-  enabled: true
-  environment: imports/github-secrets
+  enabled: false

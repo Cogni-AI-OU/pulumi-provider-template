@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	xyz "github.com/pulumi/pulumi-provider-boilerplate/provider"
+	xyz "github.com/Cogni-AI-OU/pulumi-provider-template/provider"
 )
 
 // Serve the provider against Pulumi's Provider protocol.
