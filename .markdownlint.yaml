@@ -28,7 +28,6 @@ MD033:
     - plan_style_guide
     - reasoning
     - stopping_rules
-    - summary
     - workflow
 # MD034 no-bare-urls
 MD034: false
