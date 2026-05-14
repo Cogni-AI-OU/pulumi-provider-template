@@ -5,6 +5,7 @@ description: High-signal PR review for gh-aw workflows using safe outputs
 Provide a code review for the given pull request.
 
 **Agent assumptions (applies to all agents and subagents):**
+
 - All tools are functional and will work without error. Do not test tools or make exploratory calls. Make sure this is clear to every subagent that is launched.
 - Only call a tool if it is required to complete the task. Every tool call should have a clear purpose.
 - Use GitHub MCP tools for repository reads. Do not use `gh` CLI commands for repository inspection or for posting review output.
@@ -105,6 +106,7 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
 9. Filter out any issue that fails validation.
 
 10. Deduplicate and prune the validated issue list. Remove:
+
    - Issues already covered by an existing review comment
    - Issues in threads where a human has already acknowledged the feedback
    - Issues that were present in an earlier revision but are fixed in the latest code
@@ -113,6 +115,7 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    - Findings that only came from cache-memory and are not confirmed by the current PR state
 
    Also create a separate internal list of review threads to resolve. A thread is eligible for resolution only when all of the following are true:
+
    - The thread is currently unresolved
    - The thread was started by this automation or another bot, not by a human reviewer
    - The underlying issue is fixed in the latest diff, outdated, or explicitly acknowledged by a human as intentionally left as-is
@@ -121,10 +124,12 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    Never resolve human-authored review threads. When uncertain, leave the thread unresolved.
 
 11. Classify the remaining issues:
+
    - `Blocking`: correctness, security, regression, data loss, or clear required-rule violations
    - `Non-blocking`: actionable but not merge-blocking concerns that are still worth interrupting the author for now
 
    Drop any candidate that is merely:
+
    - praise
    - reassurance
    - a follow-up idea
@@ -132,10 +137,12 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    - an observation that does not require author action
 
 12. Produce a short internal summary of findings for yourself:
+
    - If issues remain, list the highest-signal ones first
    - If no issues remain, summarize that no actionable high-signal issues were found
 
 13. If no actionable issues remain, submit exactly one final review with `submit-pull-request-review`:
+
    - Use `APPROVE`
    - Use one short sentence only, such as `No actionable issues found.`
    - Do not create inline comments
@@ -153,6 +160,7 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    Prefer zero comments over low-signal comments. Non-blocking comments should be rare.
 
 15. Post one inline comment per chosen issue using `create-pull-request-review-comment`. For each comment:
+
    - Provide a brief description of the issue
    - Explain why it matters
    - Reference the exact changed line
@@ -163,12 +171,14 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    - Do not post duplicate comments for the same issue
 
 16. Resolve eligible stale review threads using `resolve-pull-request-review-thread` before submitting the final review.
+
    - Resolve only threads from your internal resolution list
    - Resolve only bot-authored threads
    - Do not add explanatory comments when resolving
    - If no threads qualify, do nothing
 
 17. Submit exactly one final review using `submit-pull-request-review`:
+
    - Use `REQUEST_CHANGES` when at least one blocking issue remains
    - Use `APPROVE` otherwise, including when only non-blocking inline comments were left
    - Do not use `COMMENT` as the final review state
@@ -177,6 +187,7 @@ Note: Do not skip solely because prior automated review comments exist. Use prio
    - Do not include praise, correctness checklists, or "overall LGTM" framing unless there are zero inline comments and you are using the exact terse approval style above
 
 18. After the final review is submitted, update the PR-specific cache-memory file with a compact record of this review. Store only short-lived operational state such as:
+
    - review timestamp
    - PR number
    - files reviewed
