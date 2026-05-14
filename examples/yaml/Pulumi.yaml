@@ -1,6 +1,6 @@
+---
 name: provider-boilerplate
 runtime: yaml
-
 resources:
   myRandomResource:
     type: provider-boilerplate:Random
@@ -10,7 +10,6 @@ resources:
     type: provider-boilerplate:RandomComponent
     properties:
       length: 24
-
 outputs:
   output:
     value: ${myRandomResource.result}

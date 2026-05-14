@@ -3,7 +3,7 @@ using System.Linq;
 using Pulumi;
 using Boilerplate = Pulumi.ProviderBoilerplate;
 
-return await Deployment.RunAsync(() => 
+return await Deployment.RunAsync(() =>
 {
     var myRandomResource = new Boilerplate.Random("myRandomResource", new()
     {
@@ -17,4 +17,3 @@ return await Deployment.RunAsync(() =>
 
     return new Dictionary<string, object?>{};
 });
-

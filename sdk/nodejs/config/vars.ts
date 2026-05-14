@@ -14,4 +14,3 @@ Object.defineProperty(exports, "itsasecret", {
     },
     enumerable: true,
 });
-

@@ -1,6 +1,9 @@
+---
 name: Bug Report
 description: Report something that's not working correctly
-labels: ["kind/bug", "needs-triage"]
+labels:
+  - kind/bug
+  - needs-triage
 body:
   - type: markdown
     attributes:
@@ -11,8 +14,8 @@ body:
     id: what-happened
     attributes:
       label: Describe what happened
-      description: Please summarize what happened, including what Pulumi commands you ran, as well as
-        an inline snippet of any relevant error or console output.
+      description: Please summarize what happened, including what Pulumi commands you ran, as well as an inline snippet of
+        any relevant error or console output.
     validations:
       required: true
   - type: textarea
@@ -64,6 +67,6 @@ body:
     id: voting
     attributes:
       label: Contributing
-      value: |
+      value: |-
         Vote on this issue by adding a 👍 reaction. 
         To contribute a fix for this issue, leave a comment (and link to your pull request, if you've opened one already).

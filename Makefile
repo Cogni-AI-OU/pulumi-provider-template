@@ -25,11 +25,11 @@ prepare:
 	@if test ! -d "provider/cmd/pulumi-resource-provider-boilerplate"; then "Project already prepared"; exit 1; fi # SED_SKIP
 
 	# SED needs to not fail when encountering unicode characters
-	LC_CTYPE=C 
+	LC_CTYPE=C
 	LANG=C
 
 	mv "provider/cmd/pulumi-resource-provider-boilerplate" provider/cmd/pulumi-resource-${NAME} # SED_SKIP
-	
+
 	# In MacOS the -i parameter needs an empty  to execute in place.
 	if [[ "${OS}" == "Darwin" ]]; then \
 		find . \( -path './.git' -o -path './sdk' \) -prune -o -not -name 'go.sum' -type f -exec sed -i '' '/SED_SKIP/!s,github.com/pulumi/pulumi-[x]yz,${REPOSITORY},g' {} \; ; \
