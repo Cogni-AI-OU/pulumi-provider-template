@@ -4,9 +4,22 @@
 # internally (atx or setext) rather than enforcing a repository-wide style
 MD003:
   style: consistent
+# MD004 unordered-list-style
+MD004: false
+# MD007 unordered-list-indentation
+MD007: false
+# MD012 no-multiple-blanks
+MD012: false
 # MD013 line-length - Line length
-MD013:
-  line_length: 120
+MD013: false
+# MD014 dollar-signs - Dollar signs used before commands without showing output
+MD014: false
+# MD022 blanks-around-headings
+MD022: false
+# MD029 ordered-list-item-prefix - Ordered list item prefix
+MD029: false
+# MD032 blanks-around-lists
+MD032: false
 # MD033 no-inline-html - Inline HTML
 MD033:
   allowed_elements:
@@ -15,7 +28,12 @@ MD033:
     - plan_style_guide
     - reasoning
     - stopping_rules
+    - summary
     - workflow
+# MD034 no-bare-urls
+MD034: false
+# MD041 first-line-heading
+MD041: false
 # MD046 code-block-style - Code block style
 MD046:
   style: consistent

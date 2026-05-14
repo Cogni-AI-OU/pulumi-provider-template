@@ -39,7 +39,7 @@ type Random struct{}
 //
 // Each resource has an input struct, defining what arguments it accepts.
 type RandomArgs struct {
-	// Fields projected into Pulumi must be public and hava a `pulumi:"..."` tag.
+	// Fields projected into Pulumi must be public and have a `pulumi:"..."` tag.
 	// The pulumi tag doesn't need to match the field name, but it's generally a
 	// good idea.
 	Length int `pulumi:"length"`

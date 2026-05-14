@@ -29,7 +29,7 @@ jobs:
           response-requested-label: response-requested  # unused because we don't set a "stale-issue-message" above
 
         # Issue timing
-          days-before-close: 10000  # this action lacks the option not to close, so just set this indefinitly far in the future
+          days-before-close: 10000  # this action lacks the option not to close, so just set this indefinitely far in the future
           days-before-ancient: 180  # 6 months
 
         # If you don't want to mark a issue as being ancient based on a

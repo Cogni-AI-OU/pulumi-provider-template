@@ -205,7 +205,7 @@ Notes:
 - Inline comments should only be created for actionable issues on changed lines.
 - If you leave inline comments, the final review should not repeat them.
 - Cache-memory is best-effort and may be missing or stale. Use it to improve continuity, never to override current repository state.
-- When linking to code in an inline comment, use a full GitHub blob URL with a full SHA and a line range, for example: https://github.com/anthropics/claude-code/blob/c21d3c10bc8e898b7ac1a2d745bdc9bc4e423afe/package.json#L10-L15
+- When linking to code in an inline comment, use a full GitHub blob URL with a full SHA and a line range, for example: `https://github.com/owner/repo/blob/sha/path/to/file#L10-L15`
   - Requires full git sha
   - Do not use shell substitution in the URL
   - Repo name must match the repo you're code reviewing
