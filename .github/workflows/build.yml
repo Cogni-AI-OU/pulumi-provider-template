@@ -527,4 +527,8 @@ jobs:
   lint:
     name: lint
     uses: ./.github/workflows/lint.yml
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
     secrets: inherit
