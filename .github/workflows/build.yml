@@ -135,15 +135,6 @@ jobs:
       uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
       env:
         CODECOV_TOKEN: ${{ steps.esc-secrets.outputs.CODECOV_TOKEN }}
-    - if: failure() && github.event_name == 'push'
-      name: Notify Slack
-      uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # v3.19.0
-      with:
-        author_name: Failure in building provider prerequisites
-        fields: repo,commit,author,action
-        status: ${{ job.status }}
-      env:
-        SLACK_WEBHOOK_URL: ${{ steps.esc-secrets.outputs.SLACK_WEBHOOK_URL }}
   build_sdks:
     needs: prerequisites
     runs-on: pulumi-ubuntu-8core
@@ -527,4 +518,8 @@ jobs:
   lint:
     name: lint
     uses: ./.github/workflows/lint.yml
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
     secrets: inherit
