@@ -216,7 +216,7 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository
   build_sdks:
     needs: prerequisites
-    runs-on: pulumi-ubuntu-8core
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: ${{ ! contains(github.actor, 'renovate') }}
       matrix:
