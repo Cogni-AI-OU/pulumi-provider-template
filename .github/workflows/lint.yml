@@ -17,18 +17,25 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      id-token: write  # For ESC secrets.
     steps:
       - name: Checkout Repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           persist-credentials: false
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3  # v3.1.1
+        id: app-auth
+        with:
+          app-id: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+          private-key: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - name: Setup mise
         uses: jdx/mise-action@8d3b0ba20a9cea7b883d922ea958553c941ab082
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
           version: 2026.3.7
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ steps.app-auth.outputs.token }}
           cache_save: false  # A different job handles caching our tools.
       - name: prepare workspace
         continue-on-error: true

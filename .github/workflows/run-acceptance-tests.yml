@@ -11,7 +11,7 @@ on:
       - CHANGELOG.md
   workflow_dispatch: {}
 env:
-  PROVIDER: provider-template
+  PROVIDER: provider-boilerplate
   TRAVIS_OS_NAME: linux
   GOVERSION: 1.21.x
   NODEVERSION: 20.x
@@ -49,6 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     name: prerequisites
     permissions:
+      id-token: write  # For ESC secrets.
       pull-requests: write  # For schema check comment.
     steps:
       - name: Checkout Repo
@@ -57,6 +58,12 @@ jobs:
           lfs: true
           persist-credentials: false
           ref: ${{ env.PR_COMMIT_SHA }}
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3  # v3.1.1
+        id: app-auth
+        with:
+          app-id: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+          private-key: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - id: version
         name: Set Provider Version
         uses: pulumi/provider-version-action@3a647064cf4697c7c6352b9a1d9e554450cbe957  # v1.6.1
@@ -68,7 +75,7 @@ jobs:
         uses: ./.github/actions/setup-tools
         with:
           cache: 'true'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ steps.app-auth.outputs.token }}
       - if: github.event_name == 'pull_request'
         name: Install Schema Tools
         uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8  # v3.0.0
@@ -124,7 +131,7 @@ jobs:
       # the case of dependency bumps.
         continue-on-error: ${{ contains(github.actor, 'renovate') }}
       - name: Commit SDK changes for Renovate
-        if: |
+        if: >-
           steps.worktreeClean.outcome == 'failure' &&
           contains(github.actor, 'renovate') &&
           github.event_name == 'pull_request'
@@ -141,8 +148,7 @@ jobs:
           # Apply and add our changes, but don't commit any files we expect to
           # always change due to versioning.
           git stash pop
-          git add sdk \
-            provider/cmd/pulumi-resource-provider-template/schema.json
+          git add sdk provider/cmd/pulumi-resource-provider-boilerplate/schema.json
           git reset sdk/python/*/pulumi-plugin.json \
               sdk/python/pyproject.toml \
               sdk/dotnet/pulumi-plugin.json \
@@ -155,8 +161,9 @@ jobs:
 
           # Push with pulumi-bot credentials to trigger a re-run of the
           # workflow. https://github.com/orgs/community/discussions/25702
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} \
-            "HEAD:$HEAD_REF"
+          git push
+          https://pulumi-bot:${{ secrets.PULUMI_BOT_TOKEN }}@github.com/${{ github.repository }}
+          "HEAD:$HEAD_REF"
         env:
           HEAD_REF: ${{ github.head_ref }}
       - run: git status --porcelain
@@ -204,6 +211,7 @@ jobs:
     name: build_sdks
     permissions:
       contents: read
+      id-token: write  # For ESC secrets.
     steps:
       - name: Checkout Repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
@@ -211,6 +219,12 @@ jobs:
           lfs: true
           persist-credentials: false
           ref: ${{ env.PR_COMMIT_SHA }}
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3  # v3.1.1
+        id: app-auth
+        with:
+          app-id: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+          private-key: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - id: version
         name: Set Provider Version
         uses: pulumi/provider-version-action@3a647064cf4697c7c6352b9a1d9e554450cbe957  # v1.6.1
@@ -221,8 +235,7 @@ jobs:
       - name: Setup Tools
         uses: ./.github/actions/setup-tools
         with:
-          cache: 'true'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ steps.app-auth.outputs.token }}
       - name: Download provider
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8.0.1
         with:
@@ -250,7 +263,7 @@ jobs:
             sdk/java/build.gradle
         continue-on-error: ${{ contains(github.actor, 'renovate') }}
       - name: Commit SDK changes for Renovate
-        if: |
+        if: >-
           steps.worktreeClean.outcome == 'failure' &&
           contains(github.actor, 'renovate') &&
           github.event_name == 'pull_request'
@@ -267,8 +280,7 @@ jobs:
           # Apply and add our changes, but don't commit any files we expect to
           # always change due to versioning.
           git stash pop
-          git add sdk \
-            provider/cmd/pulumi-resource-provider-template/schema.json
+          git add sdk provider/cmd/pulumi-resource-provider-boilerplate/schema.json
           git reset sdk/python/*/pulumi-plugin.json \
               sdk/python/pyproject.toml \
               sdk/dotnet/pulumi-plugin.json \
@@ -281,8 +293,9 @@ jobs:
 
           # Push with pulumi-bot credentials to trigger a re-run of the
           # workflow. https://github.com/orgs/community/discussions/25702
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} \
-            "HEAD:$HEAD_REF"
+          git push
+          https://pulumi-bot:${{ secrets.PULUMI_BOT_TOKEN }}@github.com/${{ github.repository }}
+          "HEAD:$HEAD_REF"
         env:
           HEAD_REF: ${{ github.head_ref }}
       - run: git status --porcelain
@@ -321,6 +334,7 @@ jobs:
     name: test
     permissions:
       contents: read
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
@@ -328,6 +342,12 @@ jobs:
           lfs: true
           persist-credentials: false
           ref: ${{ env.PR_COMMIT_SHA }}
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3  # v3.1.1
+        id: app-auth
+        with:
+          app-id: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
+          private-key: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - id: version
         name: Set Provider Version
         uses: pulumi/provider-version-action@3a647064cf4697c7c6352b9a1d9e554450cbe957  # v1.6.1
@@ -338,8 +358,7 @@ jobs:
       - name: Setup Tools
         uses: ./.github/actions/setup-tools
         with:
-          cache: 'true'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ steps.app-auth.outputs.token }}
       - name: Download provider
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8.0.1
         with:
@@ -403,3 +422,28 @@ jobs:
           lfs: true
           persist-credentials: false
           ref: ${{ env.PR_COMMIT_SHA }}
+      - name: Mark workflow as successful
+        uses: guibranco/github-status-action-v2@e8a8fa568b768f554cfe1d34e27e917aed4c6127  # v1.2.1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: Sentinel
+          state: success
+          description: Sentinel checks passed
+          sha: ${{ github.event.pull_request.head.sha || github.sha }}
+    permissions:
+      statuses: write
+      id-token: write  # For ESC secrets.
+    if: github.event_name == 'repository_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    needs:
+      - test
+      - prerequisites
+      - lint
+  lint:
+    if: github.event_name == 'repository_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    name: lint
+    uses: ./.github/workflows/lint.yml
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    secrets: inherit
