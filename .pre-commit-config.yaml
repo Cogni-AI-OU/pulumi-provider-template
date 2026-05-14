@@ -87,7 +87,8 @@ repos:
       - id: actionlint
         exclude: |
           (?x)^(
-            \.github/workflows/.*\.lock\.yml
+            \.github/workflows/.*\.lock\.yml |
+            \.github/workflows/weekly-pulumi-update\.yml
           )$
   - repo: https://github.com/tcort/markdown-link-check
     rev: v3.14.2

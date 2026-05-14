@@ -28,7 +28,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/property"
 
-	xyz "github.com/pulumi/pulumi-provider-boilerplate/provider"
+	xyz "github.com/Cogni-AI-OU/pulumi-provider-template/provider"
 )
 
 func TestRandomCreate(t *testing.T) {

@@ -1,11 +1,9 @@
-module github.com/pulumi/pulumi-provider-boilerplate/examples/go
+module github.com/Cogni-AI-OU/pulumi-provider-template/examples/go
 
-go 1.24.7
-
-replace github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate => ../../sdk/go/pulumi-provider-boilerplate
+replace github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template => ../../sdk/go/pulumi-provider-template
 
 require (
-	github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate v0.0.99
+	github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template v0.0.99
 	github.com/pulumi/pulumi/sdk/v3 v3.212.0
 )
 

@@ -24,8 +24,7 @@ jobs:
           stale-pr-message: ''
 
         # These labels are required
-          stale-issue-label: awaiting-feedback  # somewhat confusingly, this is also
-                                                # used for when labeling "ancient" issues
+          stale-issue-label: awaiting-feedback  # somewhat confusingly, this is also used for when labeling "ancient" issues
           exempt-issue-labels: >-
             kind/enhancement,kind/task,kind/epic,kind/engineering, awaiting-upstream
             # only run on kind/bug for now, ignore awaiting-upstream too.

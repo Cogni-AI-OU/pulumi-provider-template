@@ -1,0 +1,87 @@
+{
+  "name": "provider-boilerplate",
+  "displayName": "pulumi-provider-template",
+  "name": "provider-template",
+  "version": "1.0.0",
+  "language": {
+    "go": {
+      "importBasePath": "github.com/Cogni-AI-OU/pulumi-provider-template/sdk/go/pulumi-provider-template",
+      "respectSchemaVersion": true
+    },
+    "nodejs": {
+      "respectSchemaVersion": true
+    },
+    "python": {
+      "pyproject": {
+        "enabled": true
+      },
+      "respectSchemaVersion": true
+    }
+  },
+  "config": {
+    "variables": {
+      "itsasecret": {
+        "type": "boolean"
+      }
+    }
+  },
+  "provider": {
+    "properties": {
+      "itsasecret": {
+        "type": "boolean"
+      }
+    },
+    "inputProperties": {
+      "itsasecret": {
+        "type": "boolean"
+      }
+    }
+  },
+  "resources": {
+    "provider-boilerplate:index:Random": {
+      "properties": {
+        "length": {
+          "type": "integer"
+        },
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "length",
+        "result"
+      ],
+      "inputProperties": {
+        "length": {
+          "type": "integer"
+        }
+      },
+      "requiredInputs": [
+        "length"
+      ]
+    },
+    "provider-boilerplate:index:RandomComponent": {
+      "properties": {
+        "length": {
+          "type": "integer"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "length",
+        "password"
+      ],
+      "inputProperties": {
+        "length": {
+          "type": "integer"
+        }
+      },
+      "requiredInputs": [
+        "length"
+      ],
+      "isComponent": true
+    }
+  }
+}
