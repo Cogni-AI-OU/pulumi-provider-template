@@ -13,7 +13,7 @@ MD007:
   start_indent: 2
   automated_list_indent: false
 # MD012 no-multiple-blanks
-MD012: false
+MD012: true
 # MD013 line-length - Line length
 MD013: false
 # MD014 dollar-signs - Dollar signs used before commands without showing output
