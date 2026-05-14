@@ -14,8 +14,8 @@ create an issue on that repository and provide the details.
 
 To optimize the code for readability, please follow these guidelines:
 
-* Indent using two spaces (soft tabs).
-* Consider the people who will read your code, and make it look nice for them.
+- Indent using two spaces (soft tabs).
+- Consider the people who will read your code, and make it look nice for them.
 
 ## Proposing changes
 

@@ -12,13 +12,13 @@ It implements a random number generator that you can [build and test out for you
 
 You will need to ensure the following tools are installed and present in your `$PATH`:
 
-* [`pulumictl`](https://github.com/pulumi/pulumictl#installation)
-* [Go 1.21](https://golang.org/dl/) or 1.latest
-* [NodeJS](https://nodejs.org/en/) 14.x.  We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage NodeJS installations.
-* [Yarn](https://yarnpkg.com/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Python](https://www.python.org/downloads/) (called as `python3`).  For recent versions of MacOS, the system-installed version is fine.
-* [.NET](https://dotnet.microsoft.com/download)
+- [`pulumictl`](https://github.com/pulumi/pulumictl#installation)
+- [Go 1.21](https://golang.org/dl/) or 1.latest
+- [NodeJS](https://nodejs.org/en/) 14.x.  We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage NodeJS installations.
+- [Yarn](https://yarnpkg.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Python](https://www.python.org/downloads/) (called as `python3`).  For recent versions of MacOS, the system-installed version is fine.
+- [.NET](https://dotnet.microsoft.com/download)
 
 
 ### Build & test the boilerplate provider
@@ -34,10 +34,10 @@ Pulumi offers this repository as a [GitHub template repository](https://docs.git
 
 1. Click "Use this template".
 1. Set the following options:
-   * Owner: pulumi
-   * Repository name: pulumi-provider-boilerplate (replace "provider-boilerplate" with the name of your provider)
-   * Description: Pulumi provider for xyz
-   * Repository type: Public
+   - Owner: pulumi
+   - Repository name: pulumi-provider-boilerplate (replace "provider-boilerplate" with the name of your provider)
+   - Description: Pulumi provider for xyz
+   - Repository type: Public
 1. Clone the generated repository.
 
 From the templated repository:
@@ -105,5 +105,5 @@ You can now repeat the steps for [build, install, and test](#test-against-the-ex
 ## References
 
 Other resources/examples for implementing providers:
-* [Pulumi Command provider](https://github.com/pulumi/pulumi-command/blob/master/provider/pkg/provider/provider.go)
-* [Pulumi Go Provider repository](https://github.com/pulumi/pulumi-go-provider)
+- [Pulumi Command provider](https://github.com/pulumi/pulumi-command/blob/master/provider/pkg/provider/provider.go)
+- [Pulumi Go Provider repository](https://github.com/pulumi/pulumi-go-provider)
