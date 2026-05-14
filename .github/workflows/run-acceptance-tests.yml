@@ -80,10 +80,12 @@ jobs:
         run: make generate_schema
       - if: github.event_name == 'pull_request'
         name: Check Schema is Valid
-        run: >-
+        run: |
           {
             echo 'SCHEMA_CHANGES<<EOF';
-            schema-tools compare -p ${{ env.PROVIDER }} -o ${{ github.event.repository.default_branch }} -n --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json;
+            schema-tools compare -p ${{ env.PROVIDER }} \
+              -o ${{ github.event.repository.default_branch }} -n \
+              --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json;
             echo 'EOF';
           } >> "$GITHUB_ENV"
         env:
@@ -122,7 +124,10 @@ jobs:
       # the case of dependency bumps.
         continue-on-error: ${{ contains(github.actor, 'renovate') }}
       - name: Commit SDK changes for Renovate
-        if: steps.worktreeClean.outcome == 'failure' && contains(github.actor, 'renovate') && github.event_name == 'pull_request'
+        if: |
+          steps.worktreeClean.outcome == 'failure' &&
+          contains(github.actor, 'renovate') &&
+          github.event_name == 'pull_request'
         shell: bash
         run: >
           git config --global user.email "bot@pulumi.com"
@@ -136,7 +141,8 @@ jobs:
           # Apply and add our changes, but don't commit any files we expect to
           # always change due to versioning.
           git stash pop
-          git add sdk provider/cmd/pulumi-resource-provider-template/schema.json
+          git add sdk \
+            provider/cmd/pulumi-resource-provider-template/schema.json
           git reset sdk/python/*/pulumi-plugin.json \
               sdk/python/pyproject.toml \
               sdk/dotnet/pulumi-plugin.json \
@@ -149,12 +155,16 @@ jobs:
 
           # Push with pulumi-bot credentials to trigger a re-run of the
           # workflow. https://github.com/orgs/community/discussions/25702
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "HEAD:$HEAD_REF"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} \
+            "HEAD:$HEAD_REF"
         env:
           HEAD_REF: ${{ github.head_ref }}
       - run: git status --porcelain
       - name: Tar provider binaries
-        run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin/ pulumi-resource-${{ env.PROVIDER }}
+        run: >-
+          tar -zcf ${{ github.workspace }}/bin/provider.tar.gz
+          -C ${{ github.workspace }}/bin/
+          pulumi-resource-${{ env.PROVIDER }}
           pulumi-gen-${{ env.PROVIDER}}
       - name: Upload artifacts
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f  # v7.0.0
@@ -240,7 +250,10 @@ jobs:
             sdk/java/build.gradle
         continue-on-error: ${{ contains(github.actor, 'renovate') }}
       - name: Commit SDK changes for Renovate
-        if: steps.worktreeClean.outcome == 'failure' && contains(github.actor, 'renovate') && github.event_name == 'pull_request'
+        if: |
+          steps.worktreeClean.outcome == 'failure' &&
+          contains(github.actor, 'renovate') &&
+          github.event_name == 'pull_request'
         shell: bash
         run: >
           git config --global user.email "bot@pulumi.com"
@@ -254,7 +267,8 @@ jobs:
           # Apply and add our changes, but don't commit any files we expect to
           # always change due to versioning.
           git stash pop
-          git add sdk provider/cmd/pulumi-resource-provider-template/schema.json
+          git add sdk \
+            provider/cmd/pulumi-resource-provider-template/schema.json
           git reset sdk/python/*/pulumi-plugin.json \
               sdk/python/pyproject.toml \
               sdk/dotnet/pulumi-plugin.json \
@@ -267,7 +281,8 @@ jobs:
 
           # Push with pulumi-bot credentials to trigger a re-run of the
           # workflow. https://github.com/orgs/community/discussions/25702
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "HEAD:$HEAD_REF"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} \
+            "HEAD:$HEAD_REF"
         env:
           HEAD_REF: ${{ github.head_ref }}
       - run: git status --porcelain
@@ -342,7 +357,9 @@ jobs:
           path: ${{ github.workspace }}/sdk/
       - name: UnTar SDK folder
         if: ${{ matrix.language != 'yaml' }}
-        run: tar -zxf ${{ github.workspace }}/sdk/${{ matrix.language}}.tar.gz -C ${{ github.workspace }}/sdk/${{ matrix.language}}
+        run: >-
+          tar -zxf ${{ github.workspace }}/sdk/${{ matrix.language}}.tar.gz
+          -C ${{ github.workspace }}/sdk/${{ matrix.language}}
       - name: Update path
         run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
       - name: Install Node dependencies

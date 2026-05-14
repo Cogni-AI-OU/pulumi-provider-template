@@ -41,6 +41,52 @@ jobs:
         with:
           cache: 'true'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build codegen binaries
+        run: make codegen
+      - name: Build Schema
+        run: make generate_schema
+      - name: Build Provider
+        run: make provider
+      - name: Tar provider binaries
+        run: >-
+          tar -zcf ${{ github.workspace }}/bin/provider.tar.gz
+          -C ${{ github.workspace }}/bin/
+          pulumi-resource-${{ env.PROVIDER }}
+          pulumi-gen-${{ env.PROVIDER}}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f  # v7.0.0
+        with:
+          name: pulumi-${{ env.PROVIDER }}-provider.tar.gz
+          path: ${{ github.workspace }}/bin/provider.tar.gz
+  build_sdks:
+    needs: prerequisites
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        language:
+          - nodejs
+          - python
+          - dotnet
+          - go
+          - java
+    name: build_sdks
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          lfs: true
+      - id: version
+        name: Set Provider Version
+        uses: pulumi/provider-version-action@3a647064cf4697c7c6352b9a1d9e554450cbe957  # v1.6.1
+        with:
+          set-env: PROVIDER_VERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Tools
+        uses: ./.github/actions/setup-tools
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Download Provider Binary
         uses: ./.github/actions/download-provider
       - name: Generate SDK
@@ -201,7 +247,13 @@ jobs:
           AZURE_SIGNING_ACCOUNT_ENDPOINT: ${{ secrets.AZURE_SIGNING_ACCOUNT_ENDPOINT }}
           AZURE_SIGNING_ACCOUNT_NAME: ${{ secrets.AZURE_SIGNING_ACCOUNT_NAME }}
           AZURE_SIGNING_CERT_PROFILE_NAME: ${{ secrets.AZURE_SIGNING_CERT_PROFILE_NAME }}
-          SKIP_SIGNING: ${{ secrets.AZURE_SIGNING_CLIENT_ID == '' && secrets.AZURE_SIGNING_CLIENT_SECRET == '' && secrets.AZURE_SIGNING_TENANT_ID == '' && secrets.AZURE_SIGNING_ACCOUNT_ENDPOINT == '' && secrets.AZURE_SIGNING_ACCOUNT_NAME == '' && secrets.AZURE_SIGNING_CERT_PROFILE_NAME == '' }}
+          SKIP_SIGNING: >-
+            ${{ secrets.AZURE_SIGNING_CLIENT_ID == '' &&
+            secrets.AZURE_SIGNING_CLIENT_SECRET == '' &&
+            secrets.AZURE_SIGNING_TENANT_ID == '' &&
+            secrets.AZURE_SIGNING_ACCOUNT_ENDPOINT == '' &&
+            secrets.AZURE_SIGNING_ACCOUNT_NAME == '' &&
+            secrets.AZURE_SIGNING_CERT_PROFILE_NAME == '' }}
           GITHUB_TOKEN: ${{ secrets.PULUMI_BOT_TOKEN }}
         with:
           args: -p 3 -f .goreleaser.prerelease.yml --clean --skip=validate --timeout 60m0s
