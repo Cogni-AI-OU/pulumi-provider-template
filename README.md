@@ -102,10 +102,6 @@ Create an example program using the resources defined in your provider, and plac
 
 You can now repeat the steps for [build, install, and test](#test-against-the-example).
 
-## Configuring CI and releases
-
-1. Follow the instructions laid out in the [deployment templates](./deployment-templates/README-DEPLOYMENT.md).
-
 ## References
 
 Other resources/examples for implementing providers:

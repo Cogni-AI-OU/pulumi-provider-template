@@ -47,7 +47,7 @@ safe-outputs:
   noop:
     max: 1
   messages:
-    footer: "> Reviewed by [{workflow_name}]({run_url})"
+    footer: "> Reviewed by {workflow_name}"
     run-started: "Started automated PR review for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}."
     run-success: "Finished automated PR review for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }}."
     run-failure: "Automated PR review failed for #${{ github.event.pull_request.number || github.event.inputs.pr_number || github.event.issue.number }} ({status})."
