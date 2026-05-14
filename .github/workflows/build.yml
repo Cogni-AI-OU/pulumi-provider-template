@@ -132,7 +132,7 @@ jobs:
           CODECOV_TOKEN: ${{ steps.esc-secrets.outputs.CODECOV_TOKEN }}
   build_sdks:
     needs: prerequisites
-    runs-on: pulumi-ubuntu-8core
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: ${{ ! contains(github.actor, 'renovate') }}
       matrix:
@@ -247,7 +247,7 @@ jobs:
           RELEASE_BOT_KEY: ${{ steps.esc-secrets.outputs.RELEASE_BOT_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:
-    runs-on: pulumi-ubuntu-8core
+    runs-on: ubuntu-latest
     needs:
       - build_sdks
     strategy:

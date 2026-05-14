@@ -21,30 +21,6 @@
     },
     {
       "pattern": "^https://github.com/org/repo"
-    },
-    {
-      "pattern": "^\\./deployment-templates"
-    },
-    {
-      "pattern": "^prompts/AGENTS.md"
-    },
-    {
-      "pattern": "^workflows/AGENTS.md"
-    },
-    {
-      "pattern": "^copilot-instructions.md"
-    },
-    {
-      "pattern": "^mcp-config.json"
-    },
-    {
-      "pattern": "^workflows/README.md"
-    },
-    {
-      "pattern": "run_url"
-    },
-    {
-      "pattern": "https://github.com/anthropics/claude-code"
     }
   ],
   "retryCount": 3,
