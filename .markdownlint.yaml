@@ -19,7 +19,7 @@ MD013: false
 # MD014 dollar-signs - Dollar signs used before commands without showing output
 MD014: true
 # MD022 blanks-around-headings
-MD022: false
+MD022: true
 # MD029 ordered-list-item-prefix - Ordered list item prefix
 MD029: false
 # MD032 blanks-around-lists
