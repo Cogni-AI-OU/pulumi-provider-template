@@ -18,15 +18,6 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           persist-credentials: false
-      - env:
-          ESC_ACTION_ENVIRONMENT: imports/github-secrets
-          ESC_ACTION_EXPORT_ENVIRONMENT_VARIABLES: 'false'
-          ESC_ACTION_OIDC_AUTH: 'true'
-          ESC_ACTION_OIDC_ORGANIZATION: pulumi
-          ESC_ACTION_OIDC_REQUESTED_TOKEN_TYPE: urn:pulumi:token-type:access_token:organization
-        id: esc-secrets
-        name: Fetch secrets from ESC
-        uses: pulumi/esc-action@9eb774255b1a4afb7855678ae8d4a77359da0d9b
       - uses: peter-evans/slash-command-dispatch@5c11dc7efead556e3bdabf664302212f79eb26fa  # v5
         with:
           commands: |
@@ -36,7 +27,7 @@ jobs:
           permission: write
           reaction-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+          token: ${{ secrets.PULUMI_BOT_TOKEN }}
 name: command-dispatch
 on:
   issue_comment:
